@@ -1,0 +1,329 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>{% block title %}I_butich{% endblock %}</title>
+    <link href="{%static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{%static 'css/font-awesome.min.css'%}" rel="stylesheet">
+    <link href="{%static 'css/prettyPhoto.css'%}" rel="stylesheet">
+    <link href="{%static 'css/price-range.css'%}" rel="stylesheet">
+    <link href="{%static 'css/animate.css'%}" rel="stylesheet">
+    <link href="{%static 'css/main.css'%}" rel="stylesheet">
+    <link href="{%static 'css/responsive.css'%}" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="CSS/js/html5shiv.js"></script>
+    <script src="CSS/js/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="{%static 'easyzoom/css/easyzoom.css' %}" />
+</head>
+<!--/head-->
+
+<body>
+    <header id="header">
+        <!--header-->
+        <div class="header_top">
+            <!--header_top-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="contactinfo">
+                            <ul class="nav nav-pills">
+                                <li><a href="#"><i class="fa fa-phone"></i>+254 725 083 462</a></li>
+                                <li><a href="#"><i class="fa fa-envelope"></i> i_butich@gmail.com</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="social-icons pull-right">
+                            <ul class="nav navbar-nav">
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/header_top-->
+
+        <div class="header-middle">
+            <!--header-middle-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="logo pull-left">
+                            permissions
+                            <!-- <a href="{% url 'shop:product_list' %}"><img src="{%static 'images/home/logo.PNG' %}"
+                                    alt="" /></a> -->
+                            <a href="{% url 'shop:product_list' %}">
+                                <h2
+                                    style="color:#FE980F; font-style: italic; font-family: 'Times New Roman', Times, serif;">
+                                    I_butich</h2>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="shop-menu pull-right">
+                            <ul class="nav navbar-nav">
+                                {% if request.user.is_authenticated %}
+                                <li><a href="{% url 'cart:cart_detail' %}"><i class="fa fa-shopping-cart"></i> Cart</a>
+                                </li>
+                                <li><a href="myaccount"><i class="fa fa-user"></i> My Account</a></li>
+                                <li><a href="logout"><i class="fa fa-lock"></i> Logout </a></li>
+                                {% else%}
+                                <li><a href="login"><i class="fa fa-key"></i> LogIn </a></li>
+                                <li><a href="signup"><i class="fa fa-lock"></i> SignUp </a></li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/header-middle-->
+
+        <div class="header-bottom">
+            <!--header-bottom-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                data-target=".navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="mainmenu pull-left">
+                            <ul class="nav navbar-nav collapse navbar-collapse">
+                                <li><a href="{% url 'shop:product_list' %}" class="active">Home</a></li>
+                                <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
+                                    <ul role="menu" class="sub-menu">
+                                        <li><a href="{% url 'shop:product_list' %}">Products</a></li>
+                                        <li><a href="myaccount">Account</a></li>
+                                        <li><a href="{% url 'cart:cart_detail' %}">Cart</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#" target="_blank">Contact</a></li>
+                                <li><a href="#" target="_blank">Reservation</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="search_box pull-right">
+                            <input type="text" placeholder="Search" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/header-bottom-->
+    </header>
+    <!--/header-->
+    <!-- <div class="container">
+        <div class="row" style="margin-top: 6%">
+            <button class="btn btn-info pull-right" style="background-color:rgb(177, 35, 71);">
+                {% with totail_items=cart|length %}
+                {% if cart|length > 0 %}
+                My Shopping Order:
+                <a href="{% url 'cart:cart_detail' %}" style="color: #ffffff">
+                    {{ totail_items }} item {{ totail_items|pluralize }}, Kshs. {{ cart.get_total_price }}
+                </a>
+                {% else %}
+                Your cart is empty.
+                {% endif %}
+                {% endwith %}
+            </button>
+        </div>
+
+    </div> -->
+
+
+    {% block content %}
+
+
+    {% endblock %}
+
+
+    <footer id="footer">
+        <!--Footer-->
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="companyinfo">
+                            <h2><span>Our</span>-Team</h2>
+                            <p>Meet Our Team</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="col-sm-3">
+                            <div class="video-gallery text-center">
+                                <a>
+                                    <div class="iframe-img">
+                                        <img src="{%static 'images/home/ian.jpg' %}" alt="" />
+                                    </div>
+                                </a>
+                                <p>C.E.O</p>
+                                <h2>Founder</h2>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="video-gallery text-center">
+                                <a>
+                                    <div class="iframe-img">
+                                        <img src="{%static 'images/home/ian.jpg' %}" alt="" />
+                                    </div>
+                                </a>
+                                <p>Kevo</p>
+                                <h2>Manager</h2>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="video-gallery text-center">
+                                <a>
+                                    <div class="iframe-img">
+                                        <img src="{%static 'images/home/ib.jpg' %}" alt="" />
+                                    </div>
+                                </a>
+                                <p>Kevo</p>
+                                <h2>Co-Founder</h2>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="video-gallery text-center">
+                                <a>
+                                    <div class="iframe-img">
+                                        <img src="{%static 'images/home/ib.jpg' %}" alt="" />
+                                    </div>
+                                </a>
+                                <p>Tony</p>
+                                <h2>Supervisor</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="address">
+                            <img src="{%static 'images/home/map.png'%}" alt="" />
+                            <p>Kindaruma RD, Harlingham, Nairobi</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-widget">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="single-widget">
+                            <h2>Services</h2>
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a>Carwash</a></li>
+                                <li><a>Massage</a></li>
+                                <li><a>Parking </a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="single-widget">
+                            <h2>ContactUs</h2>
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href="#"><i class="fa fa-facebook"></i>Facebook</a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i>Twitter</a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i>Google</a></li>
+                                <li><a href="#"><i class="fa fa-instagram"></i>Instagram</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="single-widget">
+                            <h2>About AshakiGrill</h2>
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href="#">Company Information</a></li>
+                                <li><a href="#">Store Location</a></li>
+                                <li><a href="#">Events</a></li>
+                                <li><a href="#">Copyright</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-sm-offset-1">
+                        <div class="single-widget">
+                            <h2>We are social, We would love to hear from you</h2>
+                            <form action="#" class="searchform">
+                                <input type="text" placeholder="Your email address" />
+                                <a href="mailto:ashaki@gmail.com" class="btn btn-default"><i
+                                        class="fa fa-arrow-circle-o-right"></i></a>
+                                <p>Shoot us an mail <br />your feedback will make us improve our services.</p>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <p class="pull-left">Copyright © {% now "Y" %} ASHAKI GRILL. All rights reserved.</p>
+                    <p class="pull-right">Designed by <span><a href="mailto:ianbutichi@gmail.com">Ibutich</a></span></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--/Footer-->
+    <script src="{%static 'js/popper.min.js' %}"></script>
+    <script src="{%static 'js/jquery.js'%}"></script>
+    <script src="{%static 'js/bootstrap.min.js'%}"></script>
+    <script src="{%static 'js/jquery.scrollUp.min.js'%}"></script>
+    <script src="{%static 'js/price-range.js'%}"></script>
+    <script src="{%static 'js/jquery.prettyPhoto.js'%}"></script>
+    <script src="{%static 'js/main.js'%}"></script>
+    <script src="{%static 'easyzoom/dist/easyzoom.js'%}"></script>
+    <script>
+        // Instantiate EasyZoom instances
+        var $easyzoom = $('.easyzoom').easyZoom();
+
+        // Setup thumbnails example
+        var api1 = $easyzoom.filter('.easyzoom--with-thumbnails').data('easyZoom');
+
+        $('.thumbnails').on('click', 'a', function (e) {
+            var $this = $(this);
+
+            e.preventDefault();
+
+            // Use EasyZoom's `swap` method
+            api1.swap($this.data('standard'), $this.attr('href'));
+        });
+
+        // Setup toggles example
+        var api2 = $easyzoom.filter('.easyzoom--with-toggle').data('easyZoom');
+
+        $('.toggle').on('click', function () {
+            var $this = $(this);
+
+            if ($this.data("active") === true) {
+                $this.text("Switch on").data("active", false);
+                api2.teardown();
+            } else {
+                $this.text("Switch off").data("active", true);
+                api2._init();
+            }
+        });
+    </script>
+</body>
+
+</html>

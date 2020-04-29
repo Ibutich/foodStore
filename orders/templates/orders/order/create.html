@@ -1,0 +1,39 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}
+Your Shopping Cart| Checkout
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row" style="margin-top: 6%">
+        <div class="col-md-8">
+            <h4 class="page-header">Checkout</h4>
+            <form action="." method="post">
+                {% csrf_token %}
+                {{ form.as_p }}<br>
+                <input type="submit" class="btn" value="Submit order"
+                    style="background-color:rgb(177, 35, 71); color: #ffffff;">
+            </form>
+        </div>
+        <div class="col-md-4">
+            <div class="page-header">
+                Order Summary
+            </div>
+            <ul class="list-group">
+                {% for item in cart %}
+                <li class="list-group-item">
+                    {{ item.quantity }}x {{ item.product.name }}
+                    <span>Kshs. {{ item.total_price }}</span>
+                </li>
+                {% endfor %}
+
+                <li class="list-group-item active"
+                    style="background-color:rgb(177, 35, 71); color: #ffffff; border-radius: rgb(177, 35, 71); ">Total
+                    Cost: kshs. {{ cart.get_total_price }}</li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

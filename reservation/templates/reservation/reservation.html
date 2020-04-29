@@ -1,0 +1,65 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}
+Reservation
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <form action="submit-checkout" method="post" class="form-horizontal">
+            <div class="col-sm-4 col-sm-offset-1">
+                <legend>Contact Info</legend>
+                <ul class="contact-info">
+                    <li>
+                        <i class="icon-home"></i> P.O.Box 5655, <br>Harlinghum, Nairobi.
+                    </li>
+                    <li><i class="icon-phone"></i> (+254) 465-6789</li>
+                    <li><i class="icon-envelope"></i>info@ashaki.co</li>
+                    <li><i class="fas fa-envelope"></i>Email: <a href="mailto:ashaki@gmail.com">Ashaki@gmail.com</a></p>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm-1">
+
+            </div>
+            <div class="col-sm-4">
+                <div class="signup-form">
+                    <!--sign up form-->
+                    <legend>Reservation Form</legend>
+                    <div class="form-group ">
+                        <input type="text" class="form-control" name="name" id="name" value="" placeholder="Your Name">
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group ">
+                        <input type="text" class="form-control" value="" name="email" id="email"
+                            placeholder="Your E-mail">
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" id="occation">
+                            <option>Select an Occation</option>
+                            <option>Wedding Ceremony</option>
+                            <option>Birthday</option>
+                            <option>Others</option>
+                        </select>
+                    </div>
+                    <div class="form-group ">
+                        <input type="text" class="form-control" name="pincode" value="" id="date"
+                            placeholder="Date &amp; Time">
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group ">
+                        <textarea name="" id="message" cols="30" rows="5" class="form-control"
+                            placeholder="Message"></textarea>
+                        <span class="text-danger"></span>
+                    </div>
+                    <input class="btn btn-outline-warning" value="Send Message" type="submit">
+                </div>
+                <!--/sign up form-->
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

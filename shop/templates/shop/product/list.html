@@ -1,0 +1,115 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}
+{% if category %}{{ category.name }} {% else %} I_butich | Home {% endif %}
+{% endblock %}
+
+{% block content %}
+<section id="slider">
+    <!--slider-->
+    <div class="container">
+        <!-- <div id="ashaki" class="carouselslide" data-ride="carousel">
+            <!-- indicators -->
+        <!-- <ul class="carousel-indicators">
+                <li data-target="#ashaki" data-slide-to="0" class="active"></li>
+                <li data-target="#ashaki" data-slide-to="1" class="active"></li>
+                <li data-target="#ashaki" data-slide-to="2" class="active"></li>
+            </ul> -->
+        <!-- The slideshow -->
+        <!-- <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="carousel-caption">
+                        <h1>Welcome to Ashaki Grill</h1>
+                        <p class="text-center">Fresh Food, Made Real Good!!!</p>
+
+                    </div>
+                </div>
+                <div class="carousel-item active">
+                    <h1>Place your order</h1>
+                </div>
+                <div class="carousel-item active">
+                    <h1>Book Reservation</h1>
+                </div>
+            </div> -->
+        <!-- left and right controls -->
+        <!-- <a href="#ashaki" class="carousel-control-prev" data-slide="prev">
+                <span class="carousel-prev-icon"></span>
+            </a>
+            <a href="#ashaki" class="carousel-control-next" data-slide="next">
+                <span class="carousel-next-icon"></span>
+            </a>
+
+        </div> -->
+
+        <!-- <marquee behavior="rotate" direction="left" style="color:orangered; font-style:italic">
+            <h2 class="text-center">Fresh Food, Made Real
+                Good!!!</h2>
+            <p class="text-center"> Place Your Order and GET it prepared in advance or Reserve a table
+                in advance.</p>
+            <h2 class="text-center">OR</h2>
+            <p class="text-center">Place Your Order and let it be delivered to You wherever you are
+            </p>
+
+
+        </marquee> -->
+    </div>
+</section>
+<!--/slider-->
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="sidebar-module list-group">
+                    <h2 class="title text-center">Categories</h2>
+                    <ol class="list-unstyled">
+                        <li {% if not category %} class="active" {% endif %}><a href="{% url 'shop:product_list' %}"
+                                style=" color: #FE980F; text-transform: uppercase;">
+                                <h2>All</h2>
+                            </a></li>
+                        {% for c in categories %}
+
+                        <li {% if category.slug == c.slug %} class="active" {% endif %}>
+                            <a href="{{ c.get_absolute_url }}" style=" color: #FE980F; text-transform: uppercase;">
+                                <h2>{{ c.name }}</h2>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ol>
+                </div>
+            </div>
+
+            <div class="col-sm-9 padding-right">
+                <div class="features_items">
+                    <!--menu_items-->
+                    <h2 class="title text-center">Our Menu</h2>
+
+                    {% for product in products %}
+
+                    <div class="col-sm-4">
+                        <div class="product-image-wrapper">
+                            <div class="single-products">
+                                <div class="productinfo text-center">
+                                    <a href="{{ product.get_absolute_url }}"><img src="{{ product.image.url }}"
+                                            alt="{{ product.name }}" class="img-fluid" /></a>
+                                    <h2>Kshs. {{ product.price }}</h2>
+                                    <p><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></p>
+
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <a href="{{ product.get_absolute_url }}" class="btn btn-default add-to-cart ">Place
+                                    Order</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+                <!--menu_items-->
+
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
